@@ -1,0 +1,25 @@
+{
+    "data": [
+        {
+            "id": "A",
+            "songs": [
+                "A Common Love",
+                "A Mighty Fortress"
+            ]
+        },
+        {
+            "id": "B",
+            "songs": [
+                "Bagi Rajawali",
+                "Bagi Tuhan Tak Ada Yang Mustahil"
+            ]
+        },
+        {
+            "id": "C",
+            "songs": [
+                "Calypso Carol",
+                "Came to My Rescue"
+            ]
+        }
+    ]
+}
