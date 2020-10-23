@@ -1,23 +1,47 @@
 <template>
-  <div class="col mx-auto">
+  <div class="container">
     <div class="col">
       <header>
-        <h1
-          v-show="currentPath"
+        <h3
+          v-show="this.$route.name == 'Home'"
           class="text-capitalize"
           style="cursor: pointer"
-          @click="gotoHome"
+          @click="gotoRoute('Home')"
         >
-          Songs
-        </h1>
-        <h1
-          v-show="!currentPath"
+          ♬ Songs List
+        </h3>
+        <h3
+          v-show="this.$route.name == 'Search'"
           class="text-capitalize"
           style="cursor: pointer"
-          @click="gotoHome"
+          @click="gotoRoute('Search')"
         >
-          Search
-        </h1>
+          🔍 Search
+        </h3>
+        <h3
+          v-show="this.$route.name == 'Alphabetical'"
+          class="text-capitalize"
+          style="cursor: pointer"
+          @click="gotoRoute('Alphabetical')"
+        >
+          🔤 Alphabetical
+        </h3>
+        <h3
+          v-show="this.$route.name == 'Subjects'"
+          class="text-capitalize"
+          style="cursor: pointer"
+          @click="gotoRoute('Subjects')"
+        >
+          📖 Topic
+        </h3>
+        <h3
+          v-show="this.$route.name == 'Category'"
+          class="text-capitalize"
+          style="cursor: pointer"
+          @click="gotoRoute('Category')"
+        >
+          ❑ Category
+        </h3>
       </header>
     </div>
   </div>
@@ -26,14 +50,9 @@
 <script>
 export default {
   methods: {
-    gotoHome: function () {
-      if (this.$route.name != "Home") this.$router.push({ path: "/" });
-    },
-  },
-  computed: {
-    currentPath() {
-      if (this.$route.name == "Search") return false;
-      else return true;
+    gotoRoute(pathName) {
+      if (this.$route.name != pathName)
+        this.$router.push({ path: `/${pathName}` });
     },
   },
 };

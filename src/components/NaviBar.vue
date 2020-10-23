@@ -1,18 +1,28 @@
 <template>
-  <nav class="nav">
+  <nav class="nav" id="navbar">
     <router-link to="/" class="nav__link">
       <i class="material-icons nav__icon">home</i>
-      <span class="nav__text">song</span>
+      <span class="nav__text small">Home</span>
     </router-link>
     <router-link to="/search" class="nav__link nav__link--active">
       <i class="material-icons nav__icon">search</i>
-      <span class="nav__text">Search</span>
+      <span class="nav__text small">Search</span>
     </router-link>
   </nav>
 </template>
 
 <script>
 export default {};
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.bottom = "0";
+  } else {
+    document.getElementById("navbar").style.bottom = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+};
 </script>
 
 <style>
@@ -29,6 +39,7 @@ body {
     background-color: #ffffff;
     display: flex;
     overflow-x: auto;
+    transition: bottom 0.3s;
 }
 
 .nav__link {
@@ -50,6 +61,7 @@ body {
 
 .nav__link:hover {
     background-color: #eeeeee;
+    text-decoration: none;
 }
 
 .nav__link--active {

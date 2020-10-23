@@ -1,17 +1,15 @@
 <template>
-  <div class="container">
-    <div class="col mx-auto">
-      <h2>Index of Topics</h2>
-      <div class="row">
-        <div
-          class="card m-1"
-          v-for="(subj, index) in subject"
-          :key="index"
-          @click="goToSubjectList(subj)"
-        >
-          <div class="card-body" style="color: white">
-            <h6 class="card-title">{{ subj }}</h6>
-          </div>
+  <div>
+    <div class="row">
+      <div
+        class="card m-1"
+        v-for="(subj, index) in subject"
+        :key="index"
+        @click="goToSubjectList(subj)"
+        style="background-color: lightblue; width: 150px; height: 150px"
+      >
+        <div class="card-body" style="color: white">
+          <h6 class="card-title">{{ subj }}</h6>
         </div>
       </div>
     </div>

@@ -1,16 +1,16 @@
 <template>
-  <div class="col mx-auto">
-    <div>
+  <div class="container">
+    <div class="col mx-auto">
       <SearchBar />
     </div>
-    <div>
+    <div class="col mx-auto">
       <div class="card-deck">
         <div
-          class="card"
+          class="card indexCard"
           v-for="(item, index) in route"
           :key="index"
           @click="goToPage(item.path)"
-          :style="{ background: item.color, width: '300px' }"
+          :style="{ background: item.color, height: '130px' }"
         >
           <div class="card-body" style="color: white">
             <h5 class="card-title">{{ item.name }}</h5>
@@ -52,13 +52,5 @@ export default {
   },
 };
 </script>
-
 <style>
-.card {
-  opacity: 1;
-  width: 140px;
-  height: 140px;
-  background: gray;
-  border-radius: 20px;
-}
 </style>

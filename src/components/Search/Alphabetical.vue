@@ -1,28 +1,25 @@
 <template>
-  <div class="container">
-    <div class="col mx-auto">
-      <h2>Index of Titles & First Lines</h2>
-      <div>
-        <ul class="list-group">
-          <div v-for="(alphabet, index) in alphabetical" :key="index">
+  <div>
+    <div>
+      <ul class="list-group">
+        <div v-for="(alphabet, index) in alphabetical" :key="index">
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center alphabetList my-1"
+          >
+            {{ alphabet.id }}
+            <span class="badge badge-primary badge-pill">10</span>
+          </li>
+          <ul class="list-group list-group-flush my-3">
             <li
-              class="list-group-item d-flex justify-content-between align-items-center alphabetList my-1"
+              v-for="(song, index) in alphabet.songs"
+              :key="index"
+              class="list-group-item"
             >
-              {{ alphabet.id }}
-              <span class="badge badge-primary badge-pill">10</span>
+              {{ song }}
             </li>
-            <ul class="list-group list-group-flush my-3">
-              <li
-                v-for="(song, index) in alphabet.songs"
-                :key="index"
-                class="list-group-item"
-              >
-                {{ song }}
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </div>
+          </ul>
+        </div>
+      </ul>
     </div>
   </div>
 </template>

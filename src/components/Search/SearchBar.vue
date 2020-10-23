@@ -4,8 +4,9 @@
       <div class="form-group">
         <input
           class="form-control-lg"
+          style="width: 100%"
           type="text"
-          placeholder="🔍 Search song number, lyrics, titles"
+          placeholder="song number, lyrics, titles"
         />
       </div>
     </form>

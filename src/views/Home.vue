@@ -1,33 +1,50 @@
 <template>
-  <div class="col mx-auto">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-            >Previous</a
-          >
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-    <ul class="list-group list-group-flush my-4">
-      <li
-        v-for="(song, index) in groupList"
-        :key="index"
-        :id="song.songNumber"
-        class="list-group-item songList my-1 rounded-pill shadow-sm"
-        @click="goToSong(song.songNumber)"
+  <div>
+    <div style="position: fixed; left: 0%; top: 0%; bottom: 50%">
+      <button
+        @click="changeSongList('decrement')"
+        style="fontsize: 50px; height: 100vh"
+        class="btn"
       >
-        <span class="">{{ song.songNumber }}. </span>
-        <span class="">{{ song.title }}</span>
-      </li>
-    </ul>
-    <button type="button" class="btn btn-primary float-right">Primary</button>
+        ‹
+      </button>
+    </div>
+    <div style="position: fixed; right: 0%; top: 0%; bottom: 50%">
+      <button
+        @click="changeSongList('increment')"
+        style="fontsize: 50px; height: 100vh"
+        class="btn"
+      >
+        ›
+      </button>
+    </div>
+    <!-- List of Songs -->
+    <div
+      class="col mx-auto"
+      v-touch:swipe.left="swipeLeftHandler"
+      v-touch:swipe.right="swipeRightHandler"
+    >
+      <div class="row">
+        <div
+          v-for="(song, index) in groupList"
+          :key="index"
+          class="card my-3 small"
+          @click="goToSong(song.songNumber)"
+          style="background-color: rgb(33, 118, 174); margin: 3px"
+        >
+          <div class="card-body" style="color: white">
+            <h6 class="card-title">
+              <span
+                ><strong>{{ song.songNumber }}</strong></span
+              ><br />
+              <span
+                ><small>{{ song.title }}</small></span
+              >
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -37,38 +54,9 @@
 export default {
   data: function () {
     return {
+      swipeAnimation: "col mx-auto",
       range: { begin: 1, end: 100 },
-      // songList: [],
-      songGroup: [
-        {
-          begin: 1,
-          end: 100,
-        },
-        {
-          begin: 101,
-          end: 200,
-        },
-        {
-          begin: 201,
-          end: 300,
-        },
-        {
-          begin: 301,
-          end: 400,
-        },
-        {
-          begin: 401,
-          end: 500,
-        },
-        {
-          begin: 501,
-          end: 600,
-        },
-        {
-          begin: 601,
-          end: 702,
-        },
-      ],
+      songList: [],
     };
   },
   computed: {
@@ -83,10 +71,28 @@ export default {
     },
   },
   methods: {
-    updateSongList({ begin, end }) {
-      this.range.begin = begin;
-      this.range.end = end;
-      console.log(begin, end);
+    swipeRightHandler() {
+      // this.swipeAnimation =
+      //   "col mx-auto animate__animated animate__slideInLeft";
+      this.changeSongList("increment");
+    },
+    swipeLeftHandler() {
+      // this.swipeAnimation =
+      //   "col mx-auto animate__animated animate__slideInRight";
+      this.changeSongList("decrement");
+    },
+    changeSongList(method) {
+      if (method === "increment") {
+        if (this.range.end === 600) this.range.end = 702;
+        if (this.range.end < 600) this.range.end += 100;
+        if (this.range.begin != 601) this.range.begin += 100;
+      } else {
+        // decrement
+        if (this.range.end === 702) this.range.end = 600;
+        else if (this.range.end > 100) this.range.end -= 100;
+        else null;
+        if (this.range.begin != 1) this.range.begin -= 100;
+      }
     },
     goToSong(number) {
       console.log(`/song/${number}`);
@@ -94,15 +100,12 @@ export default {
     },
   },
   created() {
-    // for (let i = 0; i < 702; i++) {
-    //   this.songList.push({ songNumber: i + 1, title: "A Common Love" });
-    // }
+    for (let i = 0; i < 702; i++) {
+      this.songList.push({ songNumber: i + 1, title: "A Common Love" });
+    }
   },
 };
 </script>
 
 <style>
-.songList{
-  cursor: pointer;
-}
 </style>

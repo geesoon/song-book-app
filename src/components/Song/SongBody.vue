@@ -1,17 +1,20 @@
 <template>
   <div class="container">
     <!-- Song lyrics section -->
-    <Section>
-      <div class="col-md-10 mb-4 mx-auto">
+    <div
+      v-touch:swipe.left="swipeLeftHandler"
+      v-touch:swipe.right="swipeRightHandler"
+    >
+      <div class="col mb-4 mx-auto">
         <div class="row my-4">
           <div class="col">
             <button class="btn btn-dark float-left" @click="previousSong">
-              Previous
+              ⇦
             </button>
           </div>
           <div class="col">
             <button class="btn btn-dark float-right" @click="nextSong">
-              Next
+              ⇨
             </button>
           </div>
         </div>
@@ -39,7 +42,7 @@
             </div>
           </div>
         </div>
-        <div class="row" id="song">
+        <div class="row" id="songContainer">
           <div class="col mx-auto">
             <div>
               <h5 class="text-info">{{ songId }}</h5>
@@ -56,7 +59,7 @@
         </div>
       </div>
       <br />
-    </Section>
+    </div>
   </div>
 </template>
 
@@ -72,6 +75,12 @@ export default {
     };
   },
   methods: {
+    swipeLeftHandler() {
+      this.nextSong();
+    },
+    swipeRightHandler() {
+      this.previousSong();
+    },
     changeFontSize(item) {
       let max = 40;
       let min = 11;
@@ -102,6 +111,13 @@ export default {
 </script>
 
 <style>
+#songContainer{
+  background-color: lightcyan;
+  padding: 20px;
+  border-radius: 20px;
+  height: 100%;
+}
+
 :root {
   --main-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
