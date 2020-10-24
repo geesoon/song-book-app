@@ -122,7 +122,7 @@ export default {
     // },
   },
   created() {
-    for (let i = 0; i < 702; i++) {
+    for (let i = 0; i < 100; i++) {
       this.songList.push({ songNumber: i + 1, title: "A Common Love" });
     }
   },
