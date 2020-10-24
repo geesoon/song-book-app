@@ -55,7 +55,7 @@ export default {
       songId: Number,
       expanded: false,
       swipeAnimation: "col mx-auto",
-      range: { begin: 1, end: 702 },
+      range: { begin: 1, end: 100 },
       songList: [],
     };
   },
