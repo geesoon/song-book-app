@@ -1,93 +1,67 @@
 <template>
-  <div class="container">
+  <div class="container" id="songBody">
     <!-- Song lyrics section -->
-    <div
-      v-touch:swipe.left="swipeLeftHandler"
-      v-touch:swipe.right="swipeRightHandler"
-    >
-      <div class="col mb-4 mx-auto">
-        <div class="row my-4">
-          <div class="col">
-            <button class="btn btn-dark float-left" @click="previousSong">
-              ⇦
-            </button>
-          </div>
-          <div class="col">
-            <button class="btn btn-dark float-right" @click="nextSong">
-              ⇨
-            </button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div
-              class="btn-group float-right"
-              role="group"
-              aria-label="Basic example"
+    <div>
+      <div class="row">
+        <div class="col">
+          <div
+            class="btn-group float-right"
+            role="group"
+            aria-label="Basic example"
+          >
+            <button
+              type="button"
+              class="btn btn-secondary"
+              @click="changeFontSize('increase')"
             >
-              <button
-                type="button"
-                class="btn btn-secondary"
-                @click="changeFontSize('increase')"
-              >
-                A +
-              </button>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                @click="changeFontSize('decrease')"
-              >
-                <small>A -</small>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="row" id="songContainer">
-          <div class="col mx-auto">
-            <div>
-              <h5 class="text-info">{{ songId }}</h5>
-              <h4 class="text-primary">{{ song[songId - 1].title }}</h4>
-              <h6 class="text-info">{{ song[songId - 1].author }}</h6>
-              <br />
-              <pre
-                id="songLyrics"
-                :style="{ fontSize: this.fontSize + 'px' }"
-                >{{ song[songId - 1].lyrics }}</pre
-              >
-            </div>
+              A +
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              @click="changeFontSize('decrease')"
+            >
+              <small>A -</small>
+            </button>
           </div>
         </div>
       </div>
-      <br />
+      <div class="row justify-content-center">
+        <div id="songContainer">
+          <div>
+            <h6 class="text-info">{{ song[songId - 1].author }}</h6>
+            <br />
+            <pre id="songLyrics" :style="{ fontSize: this.fontSize + 'px' }">{{
+              song[songId - 1].lyrics
+            }}</pre>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import data from "../../data/song.json";
+// import data from "../../data/song.json";
 
 export default {
   data() {
     return {
-      fontSize: 16,
-      song: data.data,
-      songId: Number,
+      fontSize: 14,
+      song: [],
     };
   },
+  props: {
+    songId: Number,
+  },
   methods: {
-    swipeLeftHandler() {
-      this.nextSong();
-    },
-    swipeRightHandler() {
-      this.previousSong();
-    },
     changeFontSize(item) {
       let max = 40;
-      let min = 11;
+      let min = 14;
       if (item == "increase") {
-        if (this.fontSize < max) this.fontSize += 5;
+        if (this.fontSize < max) this.fontSize += 2;
       } else {
-        if (this.fontSize > min) this.fontSize -= 5;
+        if (this.fontSize > min) this.fontSize -= 2;
       }
       console.log("current font size:" + this.fontSize);
     },
@@ -105,18 +79,27 @@ export default {
     },
   },
   created() {
-    this.songId = parseInt(this.$route.params.id);
+    for (let i = 0; i < 702; i++) {
+      this.song.push({
+        id: "1",
+        title: "A Common Love",
+        author: "Charles F Brown",
+        subject: "CHURCH - LOVE FOR OTHERS (SOCIAL CONCERN)",
+        lyrics:
+          "\tA common love for each other\r\n\tA common gift to the Saviour\r\n\tA common bond holding us to the Lord\r\n\tA common strength when we’re weary\r\n\tA common hope for tomorrow\r\n\tA common joy in the truth of\r\n\tGod’s word\r\n\nIn his family, we can meet each one’s needs\r\nWe can light each one’s path\r\nWe can bear each one’s grief\r\nAs his children we can comfort each care\r\nWe can build each one’s faith\r\nWe can work, we can share\r\n\nIn his family, all the love that we show\r\nAll the help that we give\r\nAll the life we bestow\r\nAs his children, they’re an offering we make\r\nNot expecting return, just a gift for his sake\r\n",
+      });
+    }
   },
 };
 </script>
 
 <style>
-#songContainer{
-  background-color: lightcyan;
-  padding: 20px;
-  border-radius: 20px;
-  height: 100%;
+#songBody{
+  width: 90vw;
 }
+/* #songContainer{
+  width: 90vw;
+} */
 
 :root {
   --main-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

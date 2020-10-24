@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-      <div class="my-4">
+      <div class="col my-4">
         <AppHeader />
       </div>
       <div class="col mx-auto">
@@ -29,6 +29,10 @@ export default {
 </script>
 
 <style>
+body{
+  background-color: #ffeed6;
+}
+
 body {
   height: min-vh-100;
 }
@@ -43,6 +47,6 @@ a{
 .card {
   opacity: 1;
   background: gray;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 </style>
