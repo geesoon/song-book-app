@@ -4,6 +4,9 @@
     <div>
       <div class="row">
         <div class="col">
+          <button type="button" class="btn btn-info btn-sm">
+            <i class="material-icons">share</i>
+          </button>
           <div
             class="btn-group float-right"
             role="group"
@@ -27,14 +30,12 @@
         </div>
       </div>
       <div class="row justify-content-center">
-        <div id="songContainer">
-          <div>
-            <h6 class="text-info">{{ song[songId - 1].author }}</h6>
-            <br />
-            <pre id="songLyrics" :style="{ fontSize: this.fontSize + 'px' }">{{
-              song[songId - 1].lyrics
-            }}</pre>
-          </div>
+        <div>
+          <h6 class="text-info">{{ song[songId - 1].author }}</h6>
+          <br />
+          <pre id="songLyrics" :style="{ fontSize: this.fontSize + 'px' }">{{
+            song[songId - 1].lyrics
+          }}</pre>
         </div>
       </div>
     </div>
@@ -42,8 +43,6 @@
 </template>
 
 <script>
-// import data from "../../data/song.json";
-
 export default {
   data() {
     return {
@@ -97,9 +96,6 @@ export default {
 #songBody{
   width: 90vw;
 }
-/* #songContainer{
-  width: 90vw;
-} */
 
 :root {
   --main-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

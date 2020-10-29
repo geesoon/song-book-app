@@ -3,6 +3,7 @@
     <form>
       <div class="form-group">
         <input
+          v-model="searchInput"
           class="form-control-lg"
           style="width: 100%"
           type="text"
@@ -10,15 +11,22 @@
         />
       </div>
     </form>
+    <div v-show="searchInput != ''">search result shows here.</div>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      searchInput: "",
+    };
   },
-  methods: {},
+  computed: {
+    searchResult: function () {
+      return null;
+    },
+  },
 };
 </script>
 

@@ -49,4 +49,11 @@ a{
   background: gray;
   border-radius: 10px;
 }
+
+.arrowFab{
+  position: fixed; 
+  right: 2%; 
+  bottom: 10%; 
+  z-index: 1;
+}
 </style>

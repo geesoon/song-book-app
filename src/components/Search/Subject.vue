@@ -6,7 +6,7 @@
         v-for="(subj, index) in subject"
         :key="index"
         @click="goToSubjectList(subj)"
-        style="background-color: lightblue; width: 150px; height: 150px"
+        style="background-color: lightblue"
       >
         <div class="card-body" style="color: white">
           <h6 class="card-title">{{ subj }}</h6>

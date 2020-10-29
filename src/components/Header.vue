@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="appHeader">
+  <div id="appHeader">
     <div class="col">
       <header>
         <h3
@@ -8,7 +8,7 @@
           style="cursor: pointer"
           @click="gotoRoute('Home')"
         >
-          ♬ Songs List
+          ♬ Ainesis
         </h3>
         <h3
           v-show="this.$route.name == 'Search'"
@@ -18,30 +18,44 @@
         >
           🔍 Search
         </h3>
-        <h3
-          v-show="this.$route.name == 'Alphabetical'"
-          class="text-capitalize"
-          style="cursor: pointer"
-          @click="gotoRoute('Alphabetical')"
-        >
-          🔤 Alphabetical
-        </h3>
-        <h3
-          v-show="this.$route.name == 'Subjects'"
-          class="text-capitalize"
-          style="cursor: pointer"
-          @click="gotoRoute('Subjects')"
-        >
-          📖 Topic
-        </h3>
-        <h3
-          v-show="this.$route.name == 'Category'"
-          class="text-capitalize"
-          style="cursor: pointer"
-          @click="gotoRoute('Category')"
-        >
-          ❑ Category
-        </h3>
+        <div class="row" v-show="this.$route.name == 'Alphabetical'">
+          <button class="btn float-left" @click="$router.go(-1)">
+            <i class="material-icons">arrow_back_ios</i>
+          </button>
+          <h3
+            class="text-capitalize"
+            style="cursor: pointer"
+            @click="gotoRoute('Alphabetical')"
+          >
+            🔤 Alphabetical
+          </h3>
+        </div>
+        <div class="row" v-show="this.$route.name == 'Subjects'">
+          <button class="btn float-left" @click="$router.go(-1)">
+            <i class="material-icons">arrow_back_ios</i>
+          </button>
+          <h3
+            v-show="this.$route.name == 'Subjects'"
+            class="text-capitalize"
+            style="cursor: pointer"
+            @click="gotoRoute('Subjects')"
+          >
+            📖 Topic
+          </h3>
+        </div>
+        <div class="row" v-show="this.$route.name == 'Category'">
+          <button class="btn float-left" @click="$router.go(-1)">
+            <i class="material-icons">arrow_back_ios</i>
+          </button>
+          <h3
+            v-show="this.$route.name == 'Category'"
+            class="text-capitalize"
+            style="cursor: pointer"
+            @click="gotoRoute('Category')"
+          >
+            ❑ Category
+          </h3>
+        </div>
       </header>
     </div>
   </div>

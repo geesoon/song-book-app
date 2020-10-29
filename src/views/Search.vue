@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import SearchBar from "../components/Search/SearchBar";
+import SearchBar from "../components/Search/SearchEngine";
 
 export default {
   data() {
